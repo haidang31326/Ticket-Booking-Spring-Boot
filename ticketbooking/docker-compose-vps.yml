@@ -11,25 +11,27 @@ services:
       MYSQL_PASSWORD: password
     ports:
       - "8282:3306"
-    # Nếu em có thư mục chứa file init.sql giống bài gốc, hãy giữ nguyên phần volumes này
     volumes:
+      # Ánh xạ thư mục chứa file init.sql (Giống hệt tài liệu bài giảng)
       - ./docker/mysql:/docker-entrypoint-initdb.d
+      # THÊM DÒNG NÀY VÀO: Lưu trữ vĩnh viễn dữ liệu thật của DB
+      - db-data:/var/lib/mysql
 
   # 2. Service Ứng dụng Spring Boot (Backend)
   ticketing-app:
-    build: . # Lệnh này bảo Docker tự động đọc Dockerfile ở cùng thư mục để build app
+    build: .
     container_name: ticketing-backend
     ports:
-      - "3103:3103" # Cổng chạy web của em
+      - "3103:3103"
     depends_on:
-      - mysql-db # Bắt buộc DB phải chạy lên trước rồi mới chạy App
+      - mysql-db
     environment:
-      # TRUYỀN BIẾN MÔI TRƯỜNG THAY THẾ CHO APPLICATION.PROPERTIES TẠI ĐÂY
       - SERVER_PORT=3103
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-db:3306/ticketing
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=password
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
       - SPRING_PROFILES_ACTIVE=vps
+
 volumes:
   db-data:
