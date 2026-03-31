@@ -18,8 +18,9 @@ public class CustomerService {
 
 
     public CustomerReponse createUser(CustomerRequest customer) {
-        Customer newCustomer = Customer.builder().
-                name(customer.getName())
+        Customer cus = customerRepository.findByEmail(customer.getEmail()).orElseThrow(()-> new RuntimeException("Customer with email " + customer.getEmail() + " already exists"));
+        Customer newCustomer = Customer.builder()
+                .name(customer.getName())
                 .email(customer.getEmail())
                 .password(customer.getPassword())
                 .address(customer.getAddress())

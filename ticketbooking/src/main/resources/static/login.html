@@ -16,17 +16,10 @@
     </style>
 </head>
 <body class="bg-light">
-<!-- Navbar -->
+<!-- Navbar Tối Giản (Chỉ hiện logo vì chưa đăng nhập) -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container">
-        <a class="navbar-brand" href="index.html">🎟️ Dane Ticket Booking</a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="index.html">Đặt Vé Mới</a></li>
-                <li class="nav-item"><a class="nav-link" href="history.html">Lịch Sử Mua Vé</a></li>
-                <li class="nav-item"><a class="nav-link active" href="login.html">Đăng Nhập</a></li>
-            </ul>
-        </div>
+    <div class="container d-flex justify-content-center">
+        <a class="navbar-brand fw-bold fs-4" href="login.html">🎟️ Dane Ticket Booking</a>
     </div>
 </nav>
 
@@ -40,52 +33,52 @@
             <div class="card shadow-sm mb-4">
                 <div class="card-body p-4">
 
-                    <!-- 1. PHẦN ĐĂNG NHẬP (Hiển thị mặc định) -->
+                    <!-- 1. PHẦN ĐĂNG NHẬP -->
                     <div id="login-section" class="auth-form active">
-                        <h4 class="card-title text-center mb-4 text-primary">Đăng Nhập</h4>
+                        <h4 class="card-title text-center mb-4 text-primary fw-bold">Đăng Nhập</h4>
                         <form id="login-form">
                             <div class="mb-3">
-                                <label class="form-label">Email</label>
-                                <input type="email" class="form-control" id="login-email" required>
+                                <label class="form-label fw-semibold">Email</label>
+                                <input type="email" class="form-control" id="login-email" required placeholder="Nhập email của bạn...">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Mật khẩu</label>
-                                <input type="password" class="form-control" id="login-password" required>
+                                <label class="form-label fw-semibold">Mật khẩu</label>
+                                <input type="password" class="form-control" id="login-password" required placeholder="Nhập mật khẩu...">
                             </div>
-                            <button type="submit" class="btn btn-primary w-100 fw-bold">ĐĂNG NHẬP</button>
+                            <button type="submit" class="btn btn-primary w-100 fw-bold mt-2">ĐĂNG NHẬP</button>
                         </form>
                         <!-- Nút chuyển sang Đăng ký -->
                         <div class="text-center mt-4">
-                            <span>Chưa có tài khoản? </span>
+                            <span class="text-muted">Chưa có tài khoản? </span>
                             <span class="toggle-link" onclick="toggleForm('register')">Đăng ký ngay</span>
                         </div>
                     </div>
 
-                    <!-- 2. PHẦN ĐĂNG KÝ (Bị ẩn đi, chỉ hiện khi bấm nút) -->
+                    <!-- 2. PHẦN ĐĂNG KÝ -->
                     <div id="register-section" class="auth-form">
-                        <h4 class="card-title text-center mb-4 text-success">Đăng Ký Tài Khoản</h4>
+                        <h4 class="card-title text-center mb-4 text-success fw-bold">Đăng Ký Tài Khoản</h4>
                         <form id="register-form">
                             <div class="mb-3">
-                                <label class="form-label">Họ và Tên</label>
-                                <input type="text" class="form-control" id="reg-name" required>
+                                <label class="form-label fw-semibold">Họ và Tên</label>
+                                <input type="text" class="form-control" id="reg-name" required placeholder="VD: Nguyễn Văn A">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Email</label>
-                                <input type="email" class="form-control" id="reg-email" required>
+                                <label class="form-label fw-semibold">Email</label>
+                                <input type="email" class="form-control" id="reg-email" required placeholder="name@example.com">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Mật khẩu</label>
-                                <input type="password" class="form-control" id="reg-password" required>
+                                <label class="form-label fw-semibold">Mật khẩu</label>
+                                <input type="password" class="form-control" id="reg-password" required placeholder="Tạo mật khẩu...">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Địa chỉ</label>
-                                <input type="text" class="form-control" id="reg-address" required>
+                                <label class="form-label fw-semibold">Địa chỉ</label>
+                                <input type="text" class="form-control" id="reg-address" required placeholder="Nhập địa chỉ của bạn...">
                             </div>
-                            <button type="submit" class="btn btn-success w-100 fw-bold">XÁC NHẬN ĐĂNG KÝ</button>
+                            <button type="submit" class="btn btn-success w-100 fw-bold mt-2">XÁC NHẬN ĐĂNG KÝ</button>
                         </form>
                         <!-- Nút chuyển về Đăng nhập -->
                         <div class="text-center mt-4">
-                            <span>Đã có tài khoản? </span>
+                            <span class="text-muted">Đã có tài khoản? </span>
                             <span class="toggle-link" onclick="toggleForm('login')">Đăng nhập tại đây</span>
                         </div>
                     </div>
@@ -96,19 +89,16 @@
     </div>
 </div>
 
-<!-- Nhúng file logic API -->
+<!-- Nhúng file logic API (chứa luồng chuyển thẳng vào Dashboard) -->
 <script src="app.js"></script>
 
 <!-- Script xử lý hiệu ứng lật thẻ Form -->
 <script>
     function toggleForm(formType) {
-        // Xóa trạng thái active của cả 2 form
         document.getElementById('login-section').classList.remove('active');
         document.getElementById('register-section').classList.remove('active');
-        // Ẩn luôn các thông báo lỗi cũ (nếu có)
         document.getElementById('auth-alert').classList.add('d-none');
 
-        // Bật form tương ứng dựa vào nút người dùng bấm
         if (formType === 'register') {
             document.getElementById('register-section').classList.add('active');
         } else {
