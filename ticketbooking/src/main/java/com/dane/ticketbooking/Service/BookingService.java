@@ -80,17 +80,18 @@ public class BookingService {
                 .build();
     }
 
-    public OrderReponse getOrderById(Long orderId) {
-        Order order = orderRepository.findById(orderId).orElseThrow(() -> new OrderExceptionNotFound("Order with id " + orderId + " not found"));
-        return OrderReponse.builder()
-                .eventId(order.getEvent().getId())
-                .bookingId(order.getOrderId())
-                .customerId(order.getCustomer().getId())
-                .ticketCount(order.getTicketCount())
-                .totalPrice(order.getTotalPrice())
-                .bookingTime(order.getPlacedAt())
-                .build();
-
+    public List<OrderReponse> getOrderById(Long orderId) {
+        List<Order> orders = orderRepository.findByCustomerId(orderId);
+        return orders.stream()
+                .map(order -> OrderReponse.builder()
+                        .bookingId(order.getOrderId())
+                        .eventId(order.getEvent().getId())
+                        .customerId(order.getCustomer().getId())
+                        .ticketCount(order.getTicketCount())
+                        .totalPrice(order.getTotalPrice())
+                        .bookingTime(order.getPlacedAt())
+                        .build())
+                .toList();
     }
 
     public List<OrderReponse> getAllOrders() {

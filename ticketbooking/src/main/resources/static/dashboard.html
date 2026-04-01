@@ -3,72 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Chủ - Dane Ticket</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .dashboard-card { transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; border-radius: 15px;}
-        .dashboard-card:hover { transform: translateY(-10px); box-shadow: 0 15px 25px rgba(0,0,0,0.15); }
-        .icon-huge { font-size: 4rem; }
-    </style>
+    <title>Quản Trị Admin - Đặt Vé</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-light">
-<!-- Thanh điều hướng cơ bản -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container">
-        <a class="navbar-brand" href="dashboard.html">🎟️ Dane Ticket Booking</a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ms-auto">
-                <!-- Nút Đăng Xuất -->
-                <li class="nav-item">
-                    <a class="nav-link text-danger fw-bold" href="#" onclick="logoutUser()">🚪 Đăng Xuất</a>
-                </li>
-            </ul>
-        </div>
+<body class="text-slate-800">
+<nav class="bg-indigo-600 text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-2">
+            <i class="fa-solid fa-ticket rotate-45 text-indigo-200 text-2xl"></i>
+            <span class="text-xl font-bold tracking-tight">EventBooking<span class="text-indigo-300">.vn</span></span>
+        </a>
+        <div class="flex items-center gap-6" id="nav-links"></div>
     </div>
 </nav>
 
-<!-- Nội dung chính -->
-<div class="container mt-5 text-center">
-    <h1 class="mb-3 fw-bold">Xin chào, <span id="welcome-name" class="text-primary">Khách</span>! 👋</h1>
-    <p class="text-muted mb-5 fs-5">Bạn muốn thực hiện thao tác gì hôm nay?</p>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <h2 class="text-2xl font-bold mb-6 flex items-center gap-2"><i class="fa-solid fa-shield-halved"></i> Quản trị Hệ thống</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-    <div class="row justify-content-center">
-        <!-- Nút Đặt Vé Khổng Lồ -->
-        <div class="col-md-5 mb-4">
-            <div class="card dashboard-card h-100 border-primary shadow-sm" onclick="window.location.href='index.html'">
-                <div class="card-body py-5">
-                    <div class="icon-huge mb-3">🎫</div>
-                    <h3 class="card-title text-primary fw-bold">Mua Vé Sự Kiện</h3>
-                    <p class="card-text text-muted">Khám phá và đặt vé các sự kiện âm nhạc, thể thao đang hot nhất.</p>
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+            <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fa-solid fa-circle-plus text-indigo-500"></i> Thêm Sự kiện</h3>
+            <form onsubmit="App.createEvent(event)" class="space-y-4">
+                <div><label class="block text-sm font-medium mb-1">Tên sự kiện</label><input required type="text" id="ev-name" class="w-full border p-2 rounded-lg"></div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div><label class="block text-sm font-medium mb-1">Tổng vé</label><input required type="number" id="ev-cap" class="w-full border p-2 rounded-lg"></div>
+                    <div><label class="block text-sm font-medium mb-1">Giá (VND)</label><input required type="number" id="ev-price" class="w-full border p-2 rounded-lg"></div>
                 </div>
-            </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Chọn Địa điểm</label>
+                    <select required id="ev-venue" class="w-full border p-2 rounded-lg">
+                        <option value="">-- Đang tải... --</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-2 rounded-lg mt-4">Tạo Sự kiện</button>
+            </form>
         </div>
 
-        <!-- Nút Lịch Sử Khổng Lồ -->
-        <div class="col-md-5 mb-4">
-            <div class="card dashboard-card h-100 border-success shadow-sm" onclick="window.location.href='history.html'">
-                <div class="card-body py-5">
-                    <div class="icon-huge mb-3">📜</div>
-                    <h3 class="card-title text-success fw-bold">Lịch Sử Mua Vé</h3>
-                    <p class="card-text text-muted">Xem lại danh sách các mã vé bạn đã đặt và thông tin thanh toán.</p>
-                </div>
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+            <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fa-solid fa-location-dot text-emerald-500"></i> Thêm Địa điểm</h3>
+            <form onsubmit="App.createVenue(event)" class="space-y-4">
+                <div><label class="block text-sm font-medium mb-1">Tên địa điểm</label><input required type="text" id="ven-name" class="w-full border p-2 rounded-lg"></div>
+                <div><label class="block text-sm font-medium mb-1">Địa chỉ</label><input required type="text" id="ven-addr" class="w-full border p-2 rounded-lg"></div>
+                <div><label class="block text-sm font-medium mb-1">Sức chứa</label><input required type="number" id="ven-cap" class="w-full border p-2 rounded-lg"></div>
+                <button type="submit" class="w-full bg-emerald-600 text-white font-bold py-2 rounded-lg mt-4">Tạo Địa điểm</button>
+            </form>
+
+            <div class="mt-6">
+                <h4 class="font-semibold mb-2">Danh sách địa điểm:</h4>
+                <ul id="venues-list" class="text-sm space-y-2"></ul>
             </div>
         </div>
     </div>
-</div>
+</main>
 
-<!-- Nhúng file logic -->
 <script src="app.js"></script>
-<script>
-    // Tự động in tên user ra màn hình chào mừng
-    document.addEventListener('DOMContentLoaded', () => {
-        const userName = localStorage.getItem('loggedInUserName');
-        if(userName) {
-            // Tách lấy phần tên trước chữ @ nếu user đăng nhập bằng email
-            const shortName = userName.split('@');
-            document.getElementById('welcome-name').innerText = shortName;
-        }
-    });
-</script>
 </body>
 </html>

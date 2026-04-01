@@ -24,8 +24,8 @@ public class OrderController {
         return ResponseEntity.ok(bookingService.createOrder(order));
     }
 
-    @GetMapping("/order/{orderid}")
-    public ResponseEntity<OrderReponse> getOrder(@PathVariable("orderid") Long orderid) {
+    @GetMapping("/order/user/{orderid}")
+    public ResponseEntity<List<OrderReponse>> getOrder(@PathVariable("orderid") Long orderid) {
         return ResponseEntity.ok(bookingService.getOrderById(orderid));
     }
     @GetMapping("/orders")

@@ -1,26 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 body {
-    background-color: #f8f9fa;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc; /* slate-50 */
 }
 
-.event-card {
-    transition: transform 0.2s, box-shadow 0.2s;
-    cursor: pointer;
+/* Toast Notification */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
 }
 
-.event-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    border-color: #0d6efd;
+.toast {
+    min-width: 250px;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    color: white;
+    font-weight: 500;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.3s forwards;
 }
 
-.form-booking {
-    position: sticky;
-    top: 20px; /* Giữ form luôn nổi trên màn hình khi cuộn */
-}
+.toast.success { background-color: #10b981; }
+.toast.error { background-color: #ef4444; }
 
-.price-tag {
-    color: #dc3545;
-    font-weight: bold;
-    font-size: 1.2rem;
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
 }
