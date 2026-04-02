@@ -6,7 +6,7 @@ INSERT INTO venue (name, address, total_capacity) VALUES
                                                       ('Sân vận động Mỹ Đình', 'Đường Lê Đức Thọ, Nam Từ Liêm', 40000);
 
 -- 2. Tạo dữ liệu cho bảng Events (Sự kiện)
-INSERT INTO event (event_name, capacity, left_capacity, price, venue_id) VALUES
+INSERT INTO event (name, capacity, left_capacity, ticket_price, venue_id) VALUES
                                                                              ('Hòa nhạc Mùa Xuân 2026', 600, 600, 500000, 1),
                                                                              ('Trận cầu Siêu cúp', 40000, 40000, 200000, 2);
 
