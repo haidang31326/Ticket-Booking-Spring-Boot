@@ -1,6 +1,4 @@
--- init.sql
-CREATE DATABASE IF NOT EXISTS ticket_db;
-USE ticket_db;
+
 
 -- 1. Tạo dữ liệu cho bảng Venues (Địa điểm) trước
 INSERT INTO venue (name, address, total_capacity) VALUES
