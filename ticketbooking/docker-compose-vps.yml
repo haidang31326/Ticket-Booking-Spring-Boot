@@ -13,7 +13,7 @@ services:
       - "8282:3306"
     volumes:
       # Ánh xạ thư mục chứa file init.sql (Giống hệt tài liệu bài giảng)
-      - ./docker/mysql:/docker-entrypoint-initdb.d
+      - ./docker/mysql:/docker-entrypoint-initdb.d/init.sql
       # THÊM DÒNG NÀY VÀO: Lưu trữ vĩnh viễn dữ liệu thật của DB
       - db-data:/var/lib/mysql
 

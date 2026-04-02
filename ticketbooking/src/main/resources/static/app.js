@@ -1,6 +1,6 @@
 const App = {
     // ĐỊA CHỈ API CỦA SPRING BOOT
-    API_BASE_URL: 'http://139.59.229.249:3103/api/v1',
+    API_BASE_URL: `${window.location.origin}/api/v1`,
 
     // STATE
     currentUser: JSON.parse(localStorage.getItem('currentUser')) || null,
