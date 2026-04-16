@@ -52,7 +52,7 @@ const App = {
 
             return await response.json();
         } catch (error) {
-            this.showToast('Lỗi kết nối Server! Vui lòng bật Backend ở cổng 3103.', 'error');
+            //this.showToast('Lỗi kết nối Server! Vui lòng bật Backend ở cổng 3103.', 'error');
             console.error("Lỗi API:", error);
             throw error;
         }

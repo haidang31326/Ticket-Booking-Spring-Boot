@@ -4,10 +4,11 @@ services:
     container_name: mysqltest
     restart: always
     environment:
+
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: booking
     ports:
-      - "8282:3306"
+      - "332:3306"
     volumes:
      # - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
       - db-data:/var/lib/mysql
