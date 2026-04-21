@@ -8,10 +8,11 @@ services:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: booking
     ports:
-      - "3306:3306"
+      - "8282:3306"
     volumes:
      # - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
       - db-data:/var/lib/mysql
-      - db-data:/var/log/mysql
+      - db-log:/var/log/mysql
 volumes:
   db-data:
+  db-log:
