@@ -7,7 +7,7 @@
 
 ##  1. Link truy cập hệ thống (Live Demo)
 Hiện tại dự án đang được deploy trên VPS để Giảng viên có thể test trực tiếp mà không cần cài đặt.
-- **Backend API Base URL:** `http://139.59.98.252:3103/api/v1`
+- **Backend API Base URL:** `http://157.245.204.215:3103/api/v1`
 - *(Lưu ý: Nếu link server bị gián đoạn, Thầy vui lòng xem hướng dẫn chạy Local ở mục 4).*
 
 ---
